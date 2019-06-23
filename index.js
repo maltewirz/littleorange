@@ -8,6 +8,9 @@ app.get("/test", function(req, res) {
     res.json("successs!");
 });
 
+
+
+
 // app.get("*", function(req, res) {
 //     // console.log(__dirname + "/index.html");
 //     res.sendFile("./public/index.html");
