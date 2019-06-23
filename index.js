@@ -4,7 +4,6 @@ const server = require('http').Server(app);
 
 app.use(express.static("./public"));
 
-
 app.get("/test", function(req, res) {
     res.json("successs!");
 });
