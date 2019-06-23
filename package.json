@@ -1,0 +1,27 @@
+{
+  "name": "littleorange",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "build": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
+  "dependencies": {
+    "express": "^4.17.1"
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maltewirz/littleorange.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maltewirz/littleorange/issues"
+  },
+  "homepage": "https://github.com/maltewirz/littleorange#readme"
+}
