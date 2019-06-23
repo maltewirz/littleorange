@@ -9,7 +9,7 @@ function App() {
         console.log("hi");
         (async () => {
             try {
-                let { data }  = await axios.get("/test");
+                let { data }  = await axios.get("/api/test");
                 console.log("data",data);
                 setData(data);
             } catch(err) {
