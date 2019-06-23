@@ -1,5 +1,5 @@
 {
-    "name": "Node template",
+    "name": "nodetemplate",
     "version": "0.9.0",
     "description": "Template for React Node",
     "engines": {
