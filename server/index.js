@@ -48,13 +48,6 @@ app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
 
 
 
-
-
-
-
-
-
-
 const register = require("./routers/register");
 app.use(register);
 
