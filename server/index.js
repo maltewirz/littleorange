@@ -2,6 +2,40 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const server = require('http').Server(app);
+// const db = require("./utils/db");
+// const csurf = require("csurf");
+const compression = require("compression");
+// const cookieSession = require("cookie-session");
+const { checkLoggedIn } = require('./middleware');
+// const secrets = (process.env.NODE_ENV == 'production' ? process.env : require("./secrets") //for testing
+let secrets;
+if (process.env.NODE_ENV == "production") {
+    secrets = process.env;
+} else {
+    secrets = require("../secrets");
+}
+// const cookieSessionMiddleware = cookieSession({
+//     secret: secrets.COOKIE_SECRET,
+//     maxAge: 1000 * 60 * 60 * 24 * 14
+// });
+////////////////////////////////////
+app.use(compression());
+app.use(express.json());
+// app.use(cookieSessionMiddleware);
+// app.use(csurf());
+// app.use((req, res, next) => {
+//     res.cookie('mytoken', req.csrfToken());
+//     res.setHeader('x-frame-options', 'DENY');
+//     next();
+// });
+
+
+
+
+
+
+
+
 
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
