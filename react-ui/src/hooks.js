@@ -22,7 +22,7 @@ export function useAuthSubmit(url, values) {
             if (data.pwError) {
                 setError("Passwortlänge mindestens 8 Zeichen!");
             } else if (data.error) {
-                setError("Etwas ist schiefgelaufen, bitte versuchen Sie es nochmal!");
+                setError("Etwas ist schiefgelaufen, bitte versuchen Sie es erneut!");
             } else {
                 window.location.href = "/";
             }
