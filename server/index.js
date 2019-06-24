@@ -30,17 +30,8 @@ app.use(register);
 const login = require("./routers/login");
 app.use(login);
 
-// Answer API requests.
-app.get("/api/getInitialCookie", function(req, res) {
-    res.json("cookie sent");
-});
-
 app.get("/api/checkLoggedIn", function(req, res) {
-    if (!req.session.userId) {
-        res.json("user_unknown");
-    } else {
-        res.json("user_known");
-    }
+    (req.session.userId) ? res.json("user_known") : res.json("user_unknown");
 });
 
 // All remaining requests return the React app, so it can handle routing.

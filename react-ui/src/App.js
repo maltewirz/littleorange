@@ -7,7 +7,7 @@ export function App() {
     useEffect(() => {
         (async () => {
             try {
-                let { data }  = await axios.get("/api/getInitialCookie");
+                let { data }  = await axios.get("/api/checkLoggedIn");
                 setData(data);
             } catch(err) {
                 console.log("err", err);
@@ -19,7 +19,7 @@ export function App() {
       <div className="App">
         <header className="App-header">
         Inside the app
-          <p> {data} </p>
+          <p> Demo Axios {data} </p>
         </header>
       </div>
     );
