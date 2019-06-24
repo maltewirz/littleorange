@@ -5,7 +5,6 @@ const server = require('http').Server(app);
 const csurf = require("csurf");
 const compression = require("compression");
 const cookieSession = require("cookie-session");
-// const { checkLoggedIn } = require('./middleware');
 const secrets = (process.env.NODE_ENV == 'production') ? process.env : require("../secrets");
 const cookieSessionMiddleware = cookieSession({
     secret: secrets.COOKIE_SECRET,
@@ -34,7 +33,6 @@ app.get("/api/checkLoggedIn", function(req, res) {
     (req.session.userId) ? res.json("user_known") : res.json("user_unknown");
 });
 
-// All remaining requests return the React app, so it can handle routing.
 app.get("*", function(request, response) {
     console.log("gettin to *");
     response.sendFile(
