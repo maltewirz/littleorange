@@ -1,8 +1,8 @@
 export function reducer(state = {}, action) {
 
-    if (action.type === 'TEST_1') {
+    if (action.type === 'GET_TEST_DATA') {
         return { ...state,
-        testarray: action.testarray};
+        testdata: action.testdata};
     }
 
     return state;

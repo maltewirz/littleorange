@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from "./axios";
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+import Bogen from './bogen';
+
 
 export function App() {
-    const [data, setData] = useState("");
-
-    useEffect(() => {
-        (async () => {
-            try {
-                let { data }  = await axios.get("/api/checkLoggedIn");
-                setData(data);
-            } catch(err) {
-                console.log("err", err);
-            }
-        })();
-    });
 
     return (
-      <div className="App">
-        <header className="App-header">
-        Inside the app
-          <p> Demo Axios {data} </p>
-        </header>
-      </div>
+        <BrowserRouter>
+            <div className="App">
+                <div className="header">
+                    <Link to="/"> Start </Link>
+                    <Link to="/bogen"> Bogen </Link>
+                    <a href="/logout"> Logout </a>
+                </div>
+
+                <div className="content">
+                    <Route path="/bogen" component={Bogen} />
+                </div>
+            </div>
+        </BrowserRouter>
     );
-
-
 }

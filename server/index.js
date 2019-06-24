@@ -33,6 +33,10 @@ app.get("/api/checkLoggedIn", function(req, res) {
     (req.session.userId) ? res.json("user_known") : res.json("user_unknown");
 });
 
+app.get("/api/testdata", function(req, res) {
+    res.json({"test": "sucess"});
+});
+
 app.get("*", function(request, response) {
     console.log("gettin to *");
     response.sendFile(

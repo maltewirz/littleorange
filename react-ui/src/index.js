@@ -14,19 +14,23 @@ const store = createStore(reducer, composeWithDevTools(applyMiddleware(reduxProm
 
 let element;
 
+function render(element) {
+    ReactDOM.render(element, document.getElementById('root'));
+}
+
 (async () => {
         try {
             let { data }  = await axios.get("/api/checkLoggedIn");
             if (data === "user_unknown") {
                 element = <Welcome />;
-                ReactDOM.render(element, document.getElementById('root'));
+                render(element);
             } else if (data === "user_known") {
                 element = (
                     <Provider store = { store }>
                         <App />
                     </Provider>
                 );
-                ReactDOM.render(element, document.getElementById('root'));
+                render(element);
             }
         } catch(err) {
             console.log("err", err);
