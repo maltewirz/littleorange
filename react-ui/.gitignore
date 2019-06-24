@@ -20,3 +20,5 @@ secrets.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+React App_files
+React App.html

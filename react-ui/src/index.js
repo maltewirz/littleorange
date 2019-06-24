@@ -8,21 +8,30 @@ import reduxPromise from 'redux-promise';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer } from './reducers';
 import * as serviceWorker from './serviceWorker';
+import axios from './axios';
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(reduxPromise)));
 
 let element;
-if (window.location.pathname === "/welcome") {
-    element = <Welcome />;
-} else {
-    element = (
-        <Provider store = { store }>
-            <App />
-        </Provider>
-    );
-}
 
-ReactDOM.render(element, document.getElementById('root'));
+(async () => {
+        try {
+            let { data }  = await axios.get("/api/checkLoggedIn");
+            if (data === "user_unknown") {
+                element = <Welcome />;
+                ReactDOM.render(element, document.getElementById('root'));
+            } else if (data === "user_known") {
+                element = (
+                    <Provider store = { store }>
+                        <App />
+                    </Provider>
+                );
+                ReactDOM.render(element, document.getElementById('root'));
+            }
+        } catch(err) {
+            console.log("err", err);
+        }
+    })();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

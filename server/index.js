@@ -24,21 +24,6 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
 
-// Middleware: Global redirect for unregistered users
-// app.use((req, res, next) => {
-//     if (
-//         !req.session.userId &&
-//         req.url != "/welcome" &&
-//         req.url != "/register" &&
-//         req.url != "/login"
-//     ) {
-//         res.redirect("/welcome");
-//     } else {
-//         next();
-//     }
-// });
-
-
 const register = require("./routers/register");
 app.use(register);
 
@@ -50,8 +35,17 @@ app.get("/api/getInitialCookie", function(req, res) {
     res.json("cookie sent");
 });
 
+app.get("/api/checkLoggedIn", function(req, res) {
+    if (!req.session.userId) {
+        res.json("user_unknown");
+    } else {
+        res.json("user_known");
+    }
+});
+
 // All remaining requests return the React app, so it can handle routing.
 app.get("*", function(request, response) {
+    console.log("gettin to *");
     response.sendFile(
         path.resolve(__dirname, "../react-ui/build", "index.html")
     );

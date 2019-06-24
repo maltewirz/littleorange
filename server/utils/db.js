@@ -20,7 +20,7 @@ module.exports.addUser = function addUser(first, last, email, password) {
 module.exports.getUserByEmail = function getUserByEmail(email) {
     return db.query(
         `
-        SELECT password, id, first, last, pic_url
+        SELECT *
         FROM users
         WHERE email=$1;
         `,
