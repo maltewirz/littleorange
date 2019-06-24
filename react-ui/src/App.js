@@ -6,11 +6,9 @@ export function App() {
     const [data, setData] = useState("");
 
     useEffect(() => {
-        console.log("hi");
         (async () => {
             try {
                 let { data }  = await axios.get("/api/test");
-                console.log("data",data);
                 setData(data);
             } catch(err) {
                 console.log("err", err);

@@ -4,7 +4,7 @@ import { useStatefulFields, useAuthSubmit, useEnter} from './hooks';
 
 export function Login() {
     const [values, handleChange] = useStatefulFields();
-    const [submit, error] = useAuthSubmit('/login', values);
+    const [submit, error] = useAuthSubmit('/api/login', values);
 
     useEnter(submit);
 
