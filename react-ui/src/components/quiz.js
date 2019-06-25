@@ -7,6 +7,7 @@ import AnswerOption from '../components/answeroption';
 function Quiz(props) {
 
     function renderAnswerOptions(key) {
+
         return (
             <AnswerOption
                 key={key.content}
@@ -18,7 +19,7 @@ function Quiz(props) {
             />
         );
     }
-
+    console.log("counter in quiz", props.questionId);
     return (
         <div className="quiz">
             <QuestionCount
@@ -36,7 +37,6 @@ function Quiz(props) {
 Quiz.propTypes = {
   answer: PropTypes.string.isRequired,
   answerOptions: PropTypes.array.isRequired,
-  counter: PropTypes.number.isRequired,
   question: PropTypes.string.isRequired,
   questionId: PropTypes.number.isRequired,
   questionTotal: PropTypes.number.isRequired,
