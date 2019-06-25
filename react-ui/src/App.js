@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 // import axios from "./axios";
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Bogen } from './bogen';
-import Question from './components/question';
 import Quiz from './components/quiz';
 import Result from './components/result';
 import quizQuestions from './api/quizquestions';
@@ -99,9 +98,8 @@ export function App() {
 
                 <div className="content">
                     <Route path="/question" render={() => (
-                        <Question content="Fav food" />
+                        results ? renderResult() : renderQuiz()
                     )} />
-                    {results ? renderResult() : renderQuiz()}
 
                     <Route path="/bogen" component={Bogen} />
                 </div>
