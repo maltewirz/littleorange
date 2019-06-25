@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
-import axios from './axios';
+// import axios from './axios';
 import { getTestData } from './actions';
 
 export function Bogen(props) {
