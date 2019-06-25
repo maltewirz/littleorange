@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "./axios";
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-// import Bogen from './bogen';
+import {Bogen} from './bogen';
 import Question from './components/question';
 import Quiz from './components/quiz';
 import quizQuestions from './api/quizquestions';
@@ -50,26 +50,12 @@ export function App() {
         return answersCountKeys.filter((key) => answersCount[key] === maxAnswerCount);
     }
 
-    const addItem = () => {
-        setItems([
-          ...items,
-          {
-            id: items.length,
-            value: Math.random() * 100
-          }
-        ]);
-      };
-
     function setUserAnswer(answer) {
-        console.log("answer in setUserAnswer", answer);
-
         setAnswersCount(() => {
-            console.log("answer inside setAnswersCount", answer);
-            // console.log("answercount, answersCount");
-
-            answersCount.push({answer: answersCount += 1});
-            //instead of pushing, create a new array with the old stuff.
-            return answersCount;
+            return {
+                ...answersCount,
+                [answer]: (answersCount[answer] || 0) + 1
+            };
         });
         setAnswer(answer);
     }
@@ -82,14 +68,13 @@ export function App() {
         setAnswer("");
     }
 
-
-
     return (
         <BrowserRouter>
             <div className="App">
                 <div className="header">
                     <Link to="/"> Start </Link>
                     <Link to="/question"> Question </Link>
+                    <Link to="/bogen"> bogen </Link>
                     <a href="/logout"> Logout </a>
                 </div>
 
@@ -105,6 +90,7 @@ export function App() {
                         questionTotal={quizQuestions.length}
                         onAnswerSelected={handleAnswerSelected}
                     />
+                    <Route path="/bogen" component={Bogen} />
                 </div>
             </div>
         </BrowserRouter>
