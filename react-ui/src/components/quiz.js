@@ -19,7 +19,6 @@ function Quiz(props) {
             />
         );
     }
-    console.log("counter in quiz", props.questionId);
     return (
         <div className="quiz">
             <QuestionCount

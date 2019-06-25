@@ -59,8 +59,6 @@ export function App() {
     }
 
     function setNextQuestion() {
-        console.log("counter",counter);
-        console.log("questionsiD",questionId);
         setCounter(counter + 1);
         setQuestionId(questionId + 1);
         setQuestion(quizQuestions[counter].question);
