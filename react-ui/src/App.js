@@ -20,7 +20,13 @@ export function App() {
     },[]);
 
     function onBoxSelected(event) {
-        console.log("Checkbox value: ", event.target.checked);
+        if (event.target.checked === true) {
+            console.log("checked true");
+        }
+    }
+
+    function setNextQuestion() {
+        console.log("here");
     }
 
 
@@ -39,7 +45,8 @@ export function App() {
                         questionId={questionId}
                         question={question}
                         questionTotal={questionData.length}
-                        checked={onBoxSelected}
+                        boxChecked={onBoxSelected}
+                        nextQuestion={setNextQuestion}
                     />
 
                     <Route path="/bogen" component={Bogen} />

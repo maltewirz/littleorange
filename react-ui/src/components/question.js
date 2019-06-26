@@ -6,15 +6,19 @@ function Question(props) {
         <p className="question"> {props.question}
                 <input
                     type="checkbox"
-                    onChange={props.checked}
+                    onChange={props.boxChecked}
                 />
+                <button
+                    onClick={props.nextQuestion}
+                > Next </button>
         </p>
     );
 }
 
 Question.propTypes = {
     question: PropTypes.string.isRequired,
-    checked: PropTypes.func.isRequired
+    boxChecked: PropTypes.func.isRequired,
+    nextQuestion: PropTypes.func.isRequired
 }
 
 export default Question;
