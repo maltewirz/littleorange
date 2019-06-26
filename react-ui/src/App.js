@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 // import axios from "./axios";
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Bogen } from './bogen';
-import Quiz from './components/quiz';
-import Result from './components/result';
-import quizQuestions from './api/quizquestions';
+import Question from './components/question';
+import questionData from './api/questiondata';
 
 export function App() {
 
@@ -17,72 +16,11 @@ export function App() {
     const [results, setStateResults] = useState("");
 
     useEffect(()=> {
-        setQuestion(quizQuestions[0].question);
-        setAnswerOptions(quizQuestions[0].answers);
+        setQuestion(questionData[0].question);
+        setAnswerOptions(questionData[0].answers);
     },[]);
 
-    function handleAnswerSelected(event) {
-        setUserAnswer(event.currentTarget.value);
-        if (questionId < quizQuestions.length) {
-            setTimeout(() => setNextQuestion(), 300);
-        } else {
-            setTimeout(() => setResults(getResults()), 300);
-        }
-    }
 
-    function setResults(result) {
-        if (result.length === 1) {
-            setStateResults(result[0]);
-        } else {
-            setStateResults("Undetermined");
-        }
-    }
-
-    function getResults() {
-        const answersCountKeys = Object.keys(answersCount);
-        const answersCountValues = answersCountKeys.map((key) => answersCount[key]);
-        const maxAnswerCount = Math.max.apply(null, answersCountValues);
-        return answersCountKeys.filter((key) => answersCount[key] === maxAnswerCount);
-    }
-
-    function setUserAnswer(answer) {
-        setAnswersCount(() => {
-            return {
-                ...answersCount,
-                [answer]: (answersCount[answer] || 0) + 1
-            };
-        });
-        setAnswer(answer);
-    }
-
-    function setNextQuestion() {
-        setCounter(counter + 1);
-        setQuestionId(questionId + 1);
-        setQuestion(quizQuestions[counter].question);
-        setAnswerOptions(quizQuestions[counter].answers);
-        setAnswer("");
-    }
-
-    function renderQuiz() {
-        return (
-            <Quiz
-                answer={answer}
-                answerOptions={answerOptions}
-                questionId={questionId}
-                question={question}
-                questionTotal={quizQuestions.length}
-                onAnswerSelected={handleAnswerSelected}
-            />
-        );
-    }
-
-    function renderResult() {
-        return (
-            <Result
-                quizResult={results}
-            />
-        );
-    }
 
     return (
         <BrowserRouter>
@@ -95,9 +33,9 @@ export function App() {
                 </div>
 
                 <div className="content">
-                    <Route path="/question" render={() => (
-                        results ? renderResult() : renderQuiz()
-                    )} />
+                    <Question
+                        content="Sample Question"
+                    />
 
                     <Route path="/bogen" component={Bogen} />
                 </div>
