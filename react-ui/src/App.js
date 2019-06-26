@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Bogen } from './bogen';
 import Quiz from './components/quiz';
+import Result from './components/result';
 import questionData from './api/questiondata';
 
 export function App() {
@@ -10,6 +11,8 @@ export function App() {
     const [question, setQuestion] = useState("");
     const [boxStateValue, setBoxStateValue] = useState(false);
     const [resultCache, setResultCache] = useState({});
+    const [finalResultPoints, setFinalResultPoints] = useState(0);
+    const [finalResultTopics, setFinalResultTopics] = useState(0);
 
     useEffect(()=> {
         setQuestion(questionData[0].question);
@@ -26,11 +29,12 @@ export function App() {
     function getFinalResults() {
         const resultTopics = Object.keys(resultCache);
         const resultPoints = Object.values(resultCache);
-        let finalResultPoints = 0;
+        let calc = 0;
         for (let e in resultPoints) {
-            finalResultPoints += resultPoints[e];
+            calc += resultPoints[e];
         }
-        return finalResultPoints;
+        setFinalResultPoints(calc);
+        setFinalResultTopics(resultTopics);
     }
 
     function setNextQuestion() {
@@ -53,6 +57,28 @@ export function App() {
 
     console.log("resultCache",resultCache);
 
+    function renderQuiz() {
+        return(
+            <Quiz
+                questionId={questionId}
+                question={question}
+                questionTotal={questionData.length}
+                stateBox={boxStateValue}
+                boxChecked={onBoxSelected}
+                nextQuestion={setNextQuestion}
+            />
+        );
+    }
+
+    function renderResult() {
+        return (
+            <Result
+                quizResultPoints={finalResultPoints}
+                quizResultTopics={finalResultTopics}
+            />
+        );
+    }
+
     return (
         <BrowserRouter>
             <div className="App">
@@ -64,14 +90,9 @@ export function App() {
                 </div>
 
                 <div className="content">
-                    <Quiz
-                        questionId={questionId}
-                        question={question}
-                        questionTotal={questionData.length}
-                        stateBox={boxStateValue}
-                        boxChecked={onBoxSelected}
-                        nextQuestion={setNextQuestion}
-                    />
+                    <Route path="/question" render={() => (
+                        finalResultPoints ? renderResult() : renderQuiz()
+                    )} />
                     <Route path="/bogen" component={Bogen} />
                 </div>
             </div>
