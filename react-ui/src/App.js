@@ -24,12 +24,13 @@ export function App() {
     }
 
     function getFinalResults() {
+        const resultTopics = Object.keys(resultCache);
         const resultPoints = Object.values(resultCache);
-        let finalResult = 0;
+        let finalResultPoints = 0;
         for (let e in resultPoints) {
-            finalResult += resultPoints[e];
+            finalResultPoints += resultPoints[e];
         }
-        return finalResult;
+        return finalResultPoints;
     }
 
     function setNextQuestion() {
