@@ -6,29 +6,33 @@ import questionData from './api/questiondata';
 
 export function App() {
 
-    const [counter, setCounter] = useState(0);
     const [questionId, setQuestionId] = useState(1);
     const [question, setQuestion] = useState("");
-    const [answerOptions, setAnswerOptions] = useState([]);
-    const [answer, setAnswer] = useState("");
-    const [answersCount, setAnswersCount] = useState({});
-    const [results, setStateResults] = useState("");
+    // const [answerOptions, setAnswerOptions] = useState([]);
+    // const [answer, setAnswer] = useState("");
+    // const [answersCount, setAnswersCount] = useState({});
+    const [boxStateValue, setBoxStateValue] = useState(false);
+    const [results, setResults] = useState({});
 
     useEffect(()=> {
         setQuestion(questionData[0].question);
-        setAnswerOptions(questionData[0].answers);
     },[]);
 
     function onBoxSelected(event) {
+
         if (event.target.checked === true) {
-            console.log("checked true");
+            setBoxStateValue(true);
+        } else {
+            setBoxStateValue(false);
         }
     }
 
     function setNextQuestion() {
-        console.log("here");
+        console.log("box", boxStateValue);
+        setQuestionId(questionId + 1);
+        setQuestion(questionData[questionId].question);
+        setBoxStateValue(false);
     }
-
 
     return (
         <BrowserRouter>
@@ -45,10 +49,10 @@ export function App() {
                         questionId={questionId}
                         question={question}
                         questionTotal={questionData.length}
+                        stateBox={boxStateValue}
                         boxChecked={onBoxSelected}
                         nextQuestion={setNextQuestion}
                     />
-
                     <Route path="/bogen" component={Bogen} />
                 </div>
             </div>

@@ -6,6 +6,7 @@ function Question(props) {
         <p className="question"> {props.question}
                 <input
                     type="checkbox"
+                    checked={props.stateBox}
                     onChange={props.boxChecked}
                 />
                 <button
@@ -17,6 +18,7 @@ function Question(props) {
 
 Question.propTypes = {
     question: PropTypes.string.isRequired,
+    stateBox: PropTypes.bool.isRequired,
     boxChecked: PropTypes.func.isRequired,
     nextQuestion: PropTypes.func.isRequired
 }

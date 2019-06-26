@@ -14,6 +14,7 @@ function Quiz(props) {
             />
             <Question
                 question={props.question}
+                stateBox={props.stateBox}
                 boxChecked={props.boxChecked}
                 nextQuestion={props.nextQuestion}
             />
@@ -25,6 +26,7 @@ Quiz.propTypes = {
   question: PropTypes.string.isRequired,
   questionId: PropTypes.number.isRequired,
   questionTotal: PropTypes.number.isRequired,
+  stateBox: PropTypes.bool.isRequired,
   boxChecked: PropTypes.func.isRequired,
   nextQuestion: PropTypes.func.isRequired
 };
