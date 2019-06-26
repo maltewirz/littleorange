@@ -19,7 +19,6 @@ export function App() {
     },[]);
 
     function onBoxSelected(event) {
-
         if (event.target.checked === true) {
             setBoxStateValue(true);
         } else {
@@ -28,12 +27,18 @@ export function App() {
     }
 
     function setNextQuestion() {
-        console.log("box", boxStateValue);
+        if (boxStateValue === true) {
+            setResults(() => {
+                return {
+                    ...results,
+                    [question]: "test"
+                };
+            });
+        }
         setQuestionId(questionId + 1);
         setQuestion(questionData[questionId].question);
         setBoxStateValue(false);
     }
-
     return (
         <BrowserRouter>
             <div className="App">
