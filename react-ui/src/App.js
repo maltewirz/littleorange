@@ -12,6 +12,7 @@ export function App() {
     const [boxStateValue, setBoxStateValue] = useState(false);
     const [resultCache, setResultCache] = useState({});
     const [finalResultPoints, setFinalResultPoints] = useState(0);
+    const [advice, setAdvice] = useState("");
     const [finalResultTopics, setFinalResultTopics] = useState(0);
 
     useEffect(()=> {
@@ -29,11 +30,21 @@ export function App() {
     function getFinalResults() {
         const resultTopics = Object.keys(resultCache);
         const resultPoints = Object.values(resultCache);
-        let calc = 0;
+        let points = 0;
         for (let e in resultPoints) {
-            calc += resultPoints[e];
+            points += resultPoints[e];
         }
-        setFinalResultPoints(calc);
+        if (points <= 1) {
+            console.log("keine");
+        } else if (points <= 2) {
+            console.log("geringe");
+        } else if (points <= 4) {
+            console.log("mittlere");
+        } else if (points > 4) {
+            console.log("hohe");
+        }
+
+        setFinalResultPoints(points);
         setFinalResultTopics(resultTopics);
     }
 
@@ -55,7 +66,7 @@ export function App() {
         }
     }
 
-    console.log("resultCache",resultCache);
+    // console.log("resultCache",resultCache);
 
     function renderQuiz() {
         return(
