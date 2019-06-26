@@ -4,12 +4,12 @@ import Question from '../components/question';
 import QuestionCount from '../components/questioncount';
 
 function Quiz(props) {
-    // console.log("porps in quiz", props);
+    // console.log("props in quiz", props);
 
     return (
         <div className="quiz">
             <QuestionCount
-                counter={props.questionId}
+                counter={props.counter}
                 total={props.questionTotal}
             />
             <Question
@@ -23,12 +23,12 @@ function Quiz(props) {
 }
 
 Quiz.propTypes = {
-  question: PropTypes.string.isRequired,
-  questionId: PropTypes.number.isRequired,
-  questionTotal: PropTypes.number.isRequired,
-  stateBox: PropTypes.bool.isRequired,
-  boxChecked: PropTypes.func.isRequired,
-  nextQuestion: PropTypes.func.isRequired
+    counter: PropTypes.number.isRequired,
+    questionTotal: PropTypes.number.isRequired,
+    question: PropTypes.string.isRequired,
+    stateBox: PropTypes.bool.isRequired,
+    boxChecked: PropTypes.func.isRequired,
+    nextQuestion: PropTypes.func.isRequired
 };
 
 export default Quiz;
