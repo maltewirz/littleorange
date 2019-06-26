@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-// import axios from "./axios";
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Bogen } from './bogen';
-import Question from './components/question';
+import Quiz from './components/quiz';
 import questionData from './api/questiondata';
 
 export function App() {
 
-    const [counter, setCounter] = useState(1);
+    const [counter, setCounter] = useState(0);
     const [questionId, setQuestionId] = useState(1);
     const [question, setQuestion] = useState("");
     const [answerOptions, setAnswerOptions] = useState([]);
@@ -20,6 +19,9 @@ export function App() {
         setAnswerOptions(questionData[0].answers);
     },[]);
 
+    function onBoxSelected(event) {
+        console.log("Checkbox value: ", event.target.checked);
+    }
 
 
     return (
@@ -33,8 +35,11 @@ export function App() {
                 </div>
 
                 <div className="content">
-                    <Question
-                        content="Sample Question"
+                    <Quiz
+                        questionId={questionId}
+                        question={question}
+                        questionTotal={questionData.length}
+                        checked={onBoxSelected}
                     />
 
                     <Route path="/bogen" component={Bogen} />

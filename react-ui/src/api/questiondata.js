@@ -1,33 +1,23 @@
 var questionData = [
   {
-      question: "1. Stark mangelnde Körperhygiene",
-      answers: {
-          points: 3
-      }
+      question: "1. Question A",
+      points: 3
   },
   {
-      question: "2. Unangemessene Körperpflege",
-      answers: {
-          points: 2
-      }
+      question: "2. Question B",
+      points: 2
   },
   {
-      question: "3. Der junge Mensch ist ständig müde oder erschöpft",
-      answers: {
-          points: 1
-      }
+      question: "3. Question C",
+      points: 1
   },
   {
-      question: "4. Mangelnde Aufsicht (mangelnde medizinische/therapeutische Versorgung)",
-      answers: {
-          points: 2
-      }
+      question: "4. Question D",
+      points: 2
   },
   {
-      question: "5. Mangel- bzw. Fehlernährung",
-      answers: {
-          points: 3
-      }
+      question: "5. Question E",
+      points: 3
   }
 ];
 

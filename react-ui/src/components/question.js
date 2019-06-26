@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 
 function Question(props) {
     return (
-        <h2 className="question">{props.content}</h2>
+        <p className="question"> {props.question}
+                <input
+                    type="checkbox"
+                    onChange={props.checked}
+                />
+        </p>
     );
 }
 
 Question.propTypes = {
-    content: PropTypes.string.isRequired
+    question: PropTypes.string.isRequired,
+    checked: PropTypes.func.isRequired
 }
 
 export default Question;
