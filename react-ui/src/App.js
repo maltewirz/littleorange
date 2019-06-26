@@ -8,11 +8,8 @@ export function App() {
 
     const [questionId, setQuestionId] = useState(1);
     const [question, setQuestion] = useState("");
-    // const [answerOptions, setAnswerOptions] = useState([]);
-    // const [answer, setAnswer] = useState("");
-    // const [answersCount, setAnswersCount] = useState({});
     const [boxStateValue, setBoxStateValue] = useState(false);
-    const [results, setResults] = useState({});
+    const [resultCache, setResultCache] = useState({});
 
     useEffect(()=> {
         setQuestion(questionData[0].question);
@@ -26,19 +23,35 @@ export function App() {
         }
     }
 
-    function setNextQuestion() {
-        if (boxStateValue === true) {
-            setResults(() => {
-                return {
-                    ...results,
-                    [question]: "test"
-                };
-            });
+    function getFinalResults() {
+        const resultPoints = Object.values(resultCache);
+        let finalResult = 0;
+        for (let e in resultPoints) {
+            finalResult += resultPoints[e];
         }
-        setQuestionId(questionId + 1);
-        setQuestion(questionData[questionId].question);
-        setBoxStateValue(false);
+        return finalResult;
     }
+
+    function setNextQuestion() {
+        if (questionId === questionData.length) {
+            getFinalResults();
+        } else {
+            if (boxStateValue === true) {
+                setResultCache(() => {
+                    return {
+                        ...resultCache,
+                        [question]: questionData[questionId].points
+                    };
+                });
+            }
+            setQuestionId(questionId + 1);
+            setQuestion(questionData[questionId].question);
+            setBoxStateValue(false);
+        }
+    }
+
+    console.log("resultCache",resultCache);
+
     return (
         <BrowserRouter>
             <div className="App">
