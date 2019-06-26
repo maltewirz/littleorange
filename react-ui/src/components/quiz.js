@@ -7,7 +7,6 @@ import AnswerOption from '../components/answeroption';
 function Quiz(props) {
 
     function renderAnswerOptions(key) {
-
         return (
             <AnswerOption
                 key={key.content}
@@ -19,6 +18,7 @@ function Quiz(props) {
             />
         );
     }
+    
     return (
         <div className="quiz">
             <QuestionCount

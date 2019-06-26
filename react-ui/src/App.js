@@ -17,8 +17,6 @@ export function App() {
     const [results, setStateResults] = useState("");
 
     useEffect(()=> {
-        // console.log("here", quizQuestions);
-        // console.log("answer",quizQuestions[0].answers);
         setQuestion(quizQuestions[0].question);
         setAnswerOptions(quizQuestions[0].answers);
     },[]);
