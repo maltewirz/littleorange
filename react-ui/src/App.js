@@ -9,16 +9,11 @@ export function App() {
 
     const [questionId, setQuestionId] = useState(0);
     const [counter, setCounter] = useState(1);
-    const [question, setQuestion] = useState("");
     const [boxStateValue, setBoxStateValue] = useState(false);
     const [resultCache, setResultCache] = useState({});
     const [finalResultPoints, setFinalResultPoints] = useState(0);
-    // const [advice, setAdvice] = useState("");
+    const [advice, setAdvice] = useState("");
     const [finalResultTopics, setFinalResultTopics] = useState(0);
-
-    useEffect(()=> {
-        setQuestion(questionData[0].question);
-    },[]);
 
     useEffect(() => {
         if (counter  === questionData.length + 1) {
@@ -42,13 +37,13 @@ export function App() {
             points += resultPoints[e];
         }
         if (points <= 1) {
-            console.log("keine");
+            setAdvice("Keine")
         } else if (points <= 2) {
-            console.log("geringe");
+            setAdvice("geringe")
         } else if (points <= 4) {
-            console.log("mittlere");
+            setAdvice("mittlere")
         } else if (points > 4) {
-            console.log("hohe");
+            setAdvice("hohe")
         }
 
         setFinalResultPoints(points);
@@ -66,7 +61,6 @@ export function App() {
         if (questionId !== questionData.length -1 ) {
             setQuestionId(questionId + 1);
             setCounter(counter + 1);
-            setQuestion(questionData[questionId].question);
             setBoxStateValue(false);
         } else {
             setCounter(questionData.length + 1)
@@ -91,6 +85,7 @@ export function App() {
             <Result
                 quizResultPoints={finalResultPoints}
                 quizResultTopics={finalResultTopics}
+                quizResultAdvice={advice}
             />
         );
     }
