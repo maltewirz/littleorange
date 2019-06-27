@@ -2,22 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Question from '../components/question';
 import QuestionCount from '../components/questioncount';
+import { Button} from 'react-bootstrap';
 
 function Quiz(props) {
     // console.log("props in quiz", props);
 
     return (
         <div className="quiz">
-            <QuestionCount
+            <h1><QuestionCount
                 counter={props.counter}
                 total={props.questionTotal}
-            />
+            /></h1>
             <Question
                 question={props.question}
                 stateBox={props.stateBox}
                 boxChecked={props.boxChecked}
                 nextQuestion={props.nextQuestion}
             />
+            <p>
+            <Button variant="primary"
+                onClick={props.nextQuestion}
+            > Next </Button>
+            </p>
         </div>
     );
 }

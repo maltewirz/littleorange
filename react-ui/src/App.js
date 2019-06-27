@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Link, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 import { Bogen } from './bogen';
 import Quiz from './components/quiz';
 import Result from './components/result';
 import questionData from './api/questiondata';
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import handlungsempfehlungen from './api/handlungsempfehlungen';
+import { Nav, Navbar } from 'react-bootstrap';
 
 export function App() {
 
@@ -38,13 +39,13 @@ export function App() {
             points += resultPoints[e];
         }
         if (points <= 1) {
-            setAdvice("Keine")
+            setAdvice(handlungsempfehlungen[0].level)
         } else if (points <= 2) {
-            setAdvice("geringe")
+            setAdvice(handlungsempfehlungen[1].level)
         } else if (points <= 4) {
-            setAdvice("mittlere")
+            setAdvice(handlungsempfehlungen[2].level)
         } else if (points > 4) {
-            setAdvice("hohe")
+            setAdvice(handlungsempfehlungen[3].level)
         }
 
         setFinalResultPoints(points);

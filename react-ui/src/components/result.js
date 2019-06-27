@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 function Result(props) {
     return (
         <div className="result">
-            You have {props.quizResultPoints} points!
-            The topics are {props.quizResultTopics}!
-            The advice is: {props.quizResultAdvice}
+            <p>Einstufung der Gefährdung mit {props.quizResultPoints} Punkten.</p>
+            <p>Die folgenden Anhaltspunkte sind festgestellt: {props.quizResultTopics}!</p>
+            <p>Handlungsempfehlung: {props.quizResultAdvice}</p>
+
+
+
         </div>
     );
 }
