@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
+
 
 function Question(props) {
     return (
@@ -9,9 +11,9 @@ function Question(props) {
                     checked={props.stateBox}
                     onChange={props.boxChecked}
                 />
-                <button
+                <Button variant="primary"
                     onClick={props.nextQuestion}
-                > Next </button>
+                > Next </Button>
         </p>
     );
 }

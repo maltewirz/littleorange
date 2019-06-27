@@ -9,6 +9,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer } from './reducers';
 import * as serviceWorker from './serviceWorker';
 import axios from './axios';
+import 'bootstrap/dist/css/bootstrap.css';
+
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(reduxPromise)));
 
