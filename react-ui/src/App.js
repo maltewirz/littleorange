@@ -22,7 +22,6 @@ export function App() {
 
     useEffect(() => {
         if (counter  === questionData.length + 1) {
-            console.log("resultCache Label 2", resultCache);
             getFinalResults();
         }
     },[counter])
@@ -70,7 +69,6 @@ export function App() {
             setQuestion(questionData[questionId].question);
             setBoxStateValue(false);
         } else {
-            console.log("string");
             setCounter(questionData.length + 1)
         }
     }
