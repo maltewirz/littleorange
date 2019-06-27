@@ -4,7 +4,7 @@ import { Bogen } from './bogen';
 import Quiz from './components/quiz';
 import Result from './components/result';
 import questionData from './api/questiondata';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 export function App() {
 
@@ -95,13 +95,16 @@ export function App() {
         <BrowserRouter>
             <div className="App">
                 <div className="header">
-                    <Navbar bg="dark" variant="dark">
-                        <Navbar.Brand  as={NavLink} to="/">Home</Navbar.Brand>
+                    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                      <Navbar.Brand  as={NavLink} to="/">Home</Navbar.Brand>
+                      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                      <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
                             <Nav.Link as={NavLink} to="/question">Question</Nav.Link>
                             <Nav.Link as={NavLink} to="/bogen">Test</Nav.Link>
                             <Nav.Link href="/logout">Logout</Nav.Link>
                         </Nav>
+                      </Navbar.Collapse>
                     </Navbar>
                 </div>
 
