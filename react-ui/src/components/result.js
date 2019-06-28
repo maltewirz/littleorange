@@ -8,12 +8,14 @@ function Result(props) {
 
             <p>{props.quizResultLevel}</p>
 
-            <h5>Die folgenden Anhaltspunkte sind festgestellt:</h5> {props.quizResultTopics && props.quizResultTopics.map(result => {
+            <h5>Die folgenden Anhaltspunkte sind festgestellt:</h5>
+            <div className="topics">
+                {props.quizResultTopics && props.quizResultTopics.map(result => {
                 return (
-                    <li key={ result }> {result} </li>
-                );
-            })}
-
+                        <li key={ result }> {result} </li>
+                    );
+                })}
+            </div>
             <h5> Handlungsempfehlungen: </h5>
             {props.quizResultAdvice}
 

@@ -113,6 +113,7 @@ export function App() {
                 </div>
 
                 <div className="content">
+                    
                     <Route path="/question" render={() => (
                         finalResultPoints ? renderResult() : renderQuiz()
                     )} />
