@@ -11,6 +11,20 @@
     flex-direction: column;
 }
 
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 15px;
+    background-color: #3c3c3c;
+    color: white;
+    text-align: center;
+}
+
 
 .result {
     margin-top: 30px;
@@ -25,6 +39,17 @@
     text-align: center;
 }
 
+.menuItem {
+    display: flex;
+    flex-direction: column;
+    color: orange;
+}
+
 h5 {
     color: orange;
+}
+
+img {
+    height: 40px;
+    background: #3c3c3c;
 }

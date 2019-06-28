@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink, Link } from 'react-router-dom';
 import Quiz from './components/quiz';
 import Result from './components/result';
 import questionData from './api/questiondata';
 import handlungsempfehlungen from './api/handlungsempfehlungen';
-import { Nav, Navbar } from 'react-bootstrap';
+import logo from './img/logo_hintergrund.png';
+import bogen from './img/bogen_symbol_grau.png';
+import doku from './img/doku_symbol_grau.png';
+import tipps from './img/tipps_symbol_grau.png';
 
 export function App() {
 
@@ -100,19 +103,13 @@ export function App() {
     return (
         <BrowserRouter>
             <div className="App">
+
                 <div className="header">
-                    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                      <Navbar.Brand  as={NavLink} to="/">Start</Navbar.Brand>
-                      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                      <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="mr-auto">
-                            <Nav.Link as={NavLink} to="/question">Bogen</Nav.Link>
-                            <Nav.Link as={NavLink} to="/doku">Doku</Nav.Link>
-                            <Nav.Link as={NavLink} to="/tipps">Tipps</Nav.Link>
-                            <Nav.Link href="/logout">Logout</Nav.Link>
-                        </Nav>
-                      </Navbar.Collapse>
-                    </Navbar>
+                    <Link to="/" className="menuItem"> <img src={logo} alt="Logo"/> Start </Link>
+                    <Link to="/question"className="menuItem"><img src={bogen} alt="Bogen"/> Bogen </Link>
+                    <Link to="/doku"className="menuItem"><img src={doku} alt="Doku"/> Doku </Link>
+                    <Link to="/tipps"className="menuItem"><img src={tipps} alt="Tipps"/> Tipps </Link>
+                    <a href="/logout"className="menuItem"><img src={logo} alt="Logo"/> Logout </a>
                 </div>
 
                 <div className="content">
