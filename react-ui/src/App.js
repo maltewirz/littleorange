@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, NavLink } from 'react-router-dom';
-import { Bogen } from './bogen';
 import Quiz from './components/quiz';
 import Result from './components/result';
 import questionData from './api/questiondata';
@@ -103,12 +102,13 @@ export function App() {
             <div className="App">
                 <div className="header">
                     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                      <Navbar.Brand  as={NavLink} to="/">Home</Navbar.Brand>
+                      <Navbar.Brand  as={NavLink} to="/">Start</Navbar.Brand>
                       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                       <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link as={NavLink} to="/question">Question</Nav.Link>
-                            <Nav.Link as={NavLink} to="/bogen">Test</Nav.Link>
+                            <Nav.Link as={NavLink} to="/question">Bogen</Nav.Link>
+                            <Nav.Link as={NavLink} to="/doku">Doku</Nav.Link>
+                            <Nav.Link as={NavLink} to="/tipps">Tipps</Nav.Link>
                             <Nav.Link href="/logout">Logout</Nav.Link>
                         </Nav>
                       </Navbar.Collapse>
@@ -119,7 +119,6 @@ export function App() {
                     <Route path="/question" render={() => (
                         finalResultPoints ? renderResult() : renderQuiz()
                     )} />
-                    <Route path="/bogen" component={Bogen} />
                 </div>
             </div>
         </BrowserRouter>
