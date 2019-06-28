@@ -9,10 +9,10 @@ function Quiz(props) {
 
     return (
         <div className="quiz">
-            <h1><QuestionCount
+            <h5><QuestionCount
                 counter={props.counter}
                 total={props.questionTotal}
-            /></h1>
+            /></h5>
             <Question
                 question={props.question}
                 stateBox={props.stateBox}
@@ -20,7 +20,7 @@ function Quiz(props) {
                 nextQuestion={props.nextQuestion}
             />
             <p>
-            <Button variant="primary"
+            <Button variant="warning"
                 onClick={props.nextQuestion}
             > Next </Button>
             </p>

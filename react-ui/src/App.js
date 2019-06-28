@@ -14,6 +14,7 @@ export function App() {
     const [boxStateValue, setBoxStateValue] = useState(false);
     const [resultCache, setResultCache] = useState({});
     const [finalResultPoints, setFinalResultPoints] = useState(0);
+    const [level, setLevel] = useState("");
     const [advice, setAdvice] = useState("");
     const [finalResultTopics, setFinalResultTopics] = useState(0);
 
@@ -39,13 +40,17 @@ export function App() {
             points += resultPoints[e];
         }
         if (points <= 1) {
-            setAdvice(handlungsempfehlungen[0].level)
+            setLevel(handlungsempfehlungen[0].level)
+            setAdvice(handlungsempfehlungen[0].advice)
         } else if (points <= 2) {
-            setAdvice(handlungsempfehlungen[1].level)
+            setLevel(handlungsempfehlungen[1].level)
+            setAdvice(handlungsempfehlungen[1].advice)
         } else if (points <= 4) {
-            setAdvice(handlungsempfehlungen[2].level)
+            setLevel(handlungsempfehlungen[2].level)
+            setAdvice(handlungsempfehlungen[2].advice)
         } else if (points > 4) {
-            setAdvice(handlungsempfehlungen[3].level)
+            setLevel(handlungsempfehlungen[3].level)
+            setAdvice(handlungsempfehlungen[3].advice)
         }
 
         setFinalResultPoints(points);
@@ -87,6 +92,7 @@ export function App() {
             <Result
                 quizResultPoints={finalResultPoints}
                 quizResultTopics={finalResultTopics}
+                quizResultLevel={level}
                 quizResultAdvice={advice}
             />
         );

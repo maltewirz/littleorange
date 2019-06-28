@@ -4,15 +4,18 @@ import PropTypes from 'prop-types';
 function Result(props) {
     return (
         <div className="result">
-            <p>Einstufung der Gefährdung mit {props.quizResultPoints} Punkten.</p>
+            <h5>Einstufung der Gefährdung mit {props.quizResultPoints} Punkten.</h5>
 
-            <p>{props.quizResultAdvice}</p>
+            <p>{props.quizResultLevel}</p>
 
-            <p>Die folgenden Anhaltspunkte sind festgestellt: {props.quizResultTopics && props.quizResultTopics.map(result => {
+            <h5>Die folgenden Anhaltspunkte sind festgestellt:</h5> {props.quizResultTopics && props.quizResultTopics.map(result => {
                 return (
                     <li key={ result }> {result} </li>
                 );
-            })}</p>
+            })}
+
+            <h5> Handlungsempfehlungen: </h5>
+            {props.quizResultAdvice}
 
         </div>
     );
@@ -21,6 +24,7 @@ function Result(props) {
 Result.propTypes = {
     quizResultPoints: PropTypes.number.isRequired,
     quizResultTopics: PropTypes.array.isRequired,
+    quizResultLevel: PropTypes.string.isRequired,
     quizResultAdvice: PropTypes.string.isRequired
 
 };
