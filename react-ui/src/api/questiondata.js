@@ -27,11 +27,6 @@ var questionData = [
 3.2 Anderer, nicht aufgeführter Grund (Bitte Feedback)`
   },
   {
-      question: "Stark mangelnde Körperhygiene",
-      points: 3,
-      details: ""
-  },
-  {
       question: "Mangelnde Aufsicht (mangelnde medizinische/therapeutische Versorgung)",
       points: 2,
       details: `4.1 trotz Behinderung / Entwicklungsverzögerung/Verletzung/offensichtlicher Erkrankung keine medizinische / therapeutische Versorgung
