@@ -9,6 +9,7 @@ import bogen from './img/bogen_symbol_grau.png';
 import doku from './img/doku_symbol_grau.png';
 import tipps from './img/tipps_symbol_grau.png';
 const resultCache = {};
+let reachedResult = false;
 
 export function App() {
     const [question, setQuestion] = useState("");
@@ -16,10 +17,9 @@ export function App() {
     const [questionId, setQuestionId] = useState(1);
     const [boxStateValue, setBoxStateValue] = useState(false);
     const [finalResultPoints, setFinalResultPoints] = useState(0);
+    const [finalResultTopics, setFinalResultTopics] = useState(0);
     const [level, setLevel] = useState("");
     const [advice, setAdvice] = useState("");
-    const [finalResultTopics, setFinalResultTopics] = useState(0);
-
 
     useEffect(() => {
         setQuestion(questionData[0].question)
@@ -34,7 +34,6 @@ export function App() {
     }
 
     function getFinalResults() {
-        console.log("getting to results", resultCache);
         const resultTopics = Object.keys(resultCache);
         const resultPoints = Object.values(resultCache);
         let points = 0;
@@ -57,13 +56,12 @@ export function App() {
 
         setFinalResultPoints(points);
         setFinalResultTopics(resultTopics);
+        reachedResult = true;
     }
 
     function setNextQuestion() {
         if (boxStateValue === true) {
-            console.log("resultCache", resultCache);
             resultCache[question] = questionData[counter].points;
-            console.log("resultCache", resultCache);
         }
 
         if (questionId === questionData.length) {
@@ -115,7 +113,7 @@ export function App() {
                 <div className="content">
 
                     <Route path="/question" render={() => (
-                        finalResultPoints ? renderResult() : renderQuiz()
+                        reachedResult ? renderResult() : renderQuiz()
                     )} />
                 </div>
             </div>
