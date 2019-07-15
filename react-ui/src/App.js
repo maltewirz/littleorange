@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route,  Link } from 'react-router-dom';
 import Quiz from './components/quiz';
 import Result from './components/result';
+import axios from './axios';
 import questionData from './api/questiondata';
 import handlungsempfehlungen from './api/handlungsempfehlungen';
 import logo from './img/logo_hintergrund.png';
@@ -57,6 +58,18 @@ export function App() {
         setFinalResultPoints(points);
         setFinalResultTopics(resultTopics);
         reachedResult = true;
+        (async () => {
+          try {
+            let { data } = await axios.post('/api/results',
+              {"finalResultPoints": points,
+              "finalResultTopics": resultTopics
+              }
+            );
+            console.log("success?", data.success);
+          } catch (err) {
+            console.log("err in post result", err);
+          }
+        })();
     }
 
     function setNextQuestion() {
