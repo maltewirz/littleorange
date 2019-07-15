@@ -28,6 +28,17 @@ module.exports.getUserByEmail = function getUserByEmail(email) {
   );
 };
 
+module.exports.getResults = function getResults(userId) {
+  return db.query(
+    `
+    SELECT *
+    FROM clients
+    WHERE user_id = $1;
+    `,
+    [userId]
+  );
+};
+
 module.exports.addResults = function addResults(userId, finalResultPoints, finalResultTopics) {
   return db.query(
     `

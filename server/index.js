@@ -34,11 +34,19 @@ app.get("/api/checkLoggedIn", function(req, res) {
   (req.session.userId) ? res.json("user_known") : res.json("user_unknown");
 });
 
+app.get("/api/results", async (req, res) => {
+  try {
+    let {rows} = await db.getResults(req.session.userId);
+    res.json(rows[rows.length-1]);
+  } catch(err) {
+    console.log(`err in app.get("/api/results"`, err);
+  }
+});
+
 app.post("/api/results", async (req, res) => {
   try {
     let { finalResultPoints, finalResultTopics } = req.body;
-    let { resp } = await db.addResults(req.session.userId, finalResultPoints, finalResultTopics);
-    console.log("resp", resp);
+    await db.addResults(req.session.userId, finalResultPoints, finalResultTopics);
     res.json({success: true});
   } catch(err) {
     console.log(`err from app.post("/api/results"`, err);

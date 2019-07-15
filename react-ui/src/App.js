@@ -23,7 +23,24 @@ export function App() {
     const [advice, setAdvice] = useState("");
 
     useEffect(() => {
-        setQuestion(questionData[0].question)
+        (async () => {
+          try {
+            setQuestion(questionData[0].question)
+            let { data } = await axios.get('/api/results');
+            console.log("response for get?", data);
+            if (data !== "") {
+              reachedResult = true;
+              setFinalResultPoints(data.final_result_points);
+              console.log(data.final_result_topics.substring(1, data.final_result_topics.length-1));
+              console.log(typeof data.final_result_topics);
+              // for (let e in )
+              // setFinalResultTopics(data.final_result_topics); // format as object but expected is ["Unangemessene", "Relevante"]
+            }
+          } catch (err) {
+            console.log("err in post result", err);
+          }
+        })();
+
     },[]);
 
     function onBoxSelected(event) {
@@ -110,7 +127,6 @@ export function App() {
             />
         );
     }
-
     return (
         <BrowserRouter>
             <div className="App">
