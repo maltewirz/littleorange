@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const db = require("./utils/db");
 const server = require('http').Server(app);
 const csurf = require("csurf");
 const compression = require("compression");
@@ -34,10 +35,15 @@ app.get("/api/checkLoggedIn", function(req, res) {
 });
 
 app.post("/api/results", async (req, res) => {
-  console.log("arrive in results api");
-  console.log("req.body", req.body);
-  console.log("userId", req.session.userId);
-  res.json({success: true});
+  try {
+    let { finalResultPoints, finalResultTopics } = req.body;
+    let { resp } = await db.addResults(req.session.userId, finalResultPoints, finalResultTopics);
+    console.log("resp", resp);
+    res.json({success: true});
+  } catch(err) {
+    console.log(`err from app.post("/api/results"`, err);
+    res.json({success: false});
+  }
 });
 
 app.get("/api/testdata", function(req, res) {
